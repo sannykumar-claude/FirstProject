@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,12 +7,27 @@
     <RootNamespace>First_project</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-  </ItemGroup>
+	<ItemGroup>
+		<!-- Microsoft.AspNetCore.Authentication.JwtBearer: Provides JWT Bearer authentication middleware for ASP.NET Core -->
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.32" />
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+		<!-- Microsoft.AspNetCore.Identity.EntityFrameworkCore: Provides ASP.NET Core Identity integration with Entity Framework Core -->
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.35" />
+
+		<!-- Microsoft.EntityFrameworkCore.SqlServer: Provides SQL Server database provider for Entity Framework Core -->
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.35" />
+
+		<!-- Microsoft.EntityFrameworkCore.Tools: Provides command-line tools for EF Core. Includes tooling for migrations, etc. -->
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.35">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+
+		<!-- Swashbuckle.AspNetCore: Provides Swagger integration for ASP.NET Core, helping to generate API documentation -->
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+
+		<!-- System.IdentityModel.Tokens.Jwt: Provides support for JWT token creation and validation -->
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.36.0" />
+	</ItemGroup>
 
 </Project>
