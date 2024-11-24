@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from '../account.service';
 import { SharedService } from 'src/app/shared/shared.service';
 import { Router } from '@angular/router';
+import { take } from 'rxjs';
+import { User } from 'src/app/shared/models/User';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +20,13 @@ export class RegisterComponent implements OnInit {
   constructor(private accoutService:AccountService,private formBuilder:FormBuilder,
     private sharedService:SharedService,private router:Router
   ){
+    this.accoutService.user$.pipe(take(1)).subscribe({
+      next:(user:User |null)=>{
+        if(user){
+          this.router.navigateByUrl('/');
+        }
+      }
+    })
 
   }
 
@@ -35,7 +44,6 @@ export class RegisterComponent implements OnInit {
     })
   }
   public register(){
-    debugger
   this.submitted=true;
    this.errorMessages=[];
    if(this.registerForm.valid){

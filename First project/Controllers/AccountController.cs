@@ -28,13 +28,21 @@ namespace First_project.Controllers
             _userManager = userManager;
         }
         [Authorize]
-        [HttpGet("refresh-user-token")]
-        public async Task<ActionResult<UserDto>> RefreshUserToken()
+        [HttpGet("refresh-page")]
+        public async Task<ActionResult<UserDto>> RefreshPage()
         {
-            var user = await _userManager.FindByNameAsync(User.FindFirst(ClaimTypes.Name)?.Value);
-            return CreateApplicationuserDto(user);
+            var user = await _userManager.FindByNameAsync(User.FindFirst(ClaimTypes.Email)?.Value);
 
+            if (await _userManager.IsLockedOutAsync(user))
+            {
+                return Unauthorized("You have been locked out");
+            }
+            return  CreateApplicationuserDto(user);
         }
+
+
+
+
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto model)
         {

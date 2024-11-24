@@ -1,4 +1,5 @@
 ﻿using First_project.modals;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -20,22 +21,24 @@ namespace First_project.services
         }
         public string CreateJwt(User user)
         {
-            var userclaims = new List<Claim>
+            var userClaims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier,user.Id),
-                new Claim(ClaimTypes.Email,user.Email),
-                new Claim(ClaimTypes.GivenName,user.FirstName),
-                new Claim(ClaimTypes.Surname,user.LastName)
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim(ClaimTypes.Email, user.UserName),
+                new Claim(ClaimTypes.GivenName, user.FirstName),
+                new Claim(ClaimTypes.Surname, user.LastName)
             };
-            var creadentials = new SigningCredentials(_jwtkey, SecurityAlgorithms.HmacSha256Signature);
+
+
+            var creadentials = new SigningCredentials(_jwtkey, SecurityAlgorithms.HmacSha512Signature);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(userclaims),
-                Expires = DateTime.UtcNow.AddDays(int.Parse(_config["JWT:ExpiresInDays"])),
+                Subject = new ClaimsIdentity(userClaims),
+                Expires = DateTime.UtcNow.AddMinutes(int.Parse(_config["JWT:ExpiresInMinutes"])),
                 SigningCredentials = creadentials,
                 Issuer = _config["JWT:Issuer"]
-
             };
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var jwt = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(jwt);

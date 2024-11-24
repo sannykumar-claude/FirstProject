@@ -53,7 +53,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:key"])),
             ValidIssuer = builder.Configuration["JWT:Issuer"],
             ValidateIssuer = true,
-            ValidateAudience = true,
+            ValidateAudience = false,
+            ValidateLifetime = true,
         };
     });
 builder.Services.AddCors();

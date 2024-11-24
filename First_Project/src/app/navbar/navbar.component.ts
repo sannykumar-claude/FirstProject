@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AccountService } from '../account/account.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+
+  constructor(public accountService:AccountService){
+
+  }
+  public logOut(){
+    this.accountService.logOut();
+  }
 }
