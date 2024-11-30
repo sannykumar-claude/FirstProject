@@ -9,6 +9,7 @@
 
 	<ItemGroup>
 		<!-- Microsoft.AspNetCore.Authentication.JwtBearer: Provides JWT Bearer authentication middleware for ASP.NET Core -->
+		<PackageReference Include="Mailjet.Api" Version="3.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.32" />
 
 		<!-- Microsoft.AspNetCore.Identity.EntityFrameworkCore: Provides ASP.NET Core Identity integration with Entity Framework Core -->

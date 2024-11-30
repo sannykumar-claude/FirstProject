@@ -22,6 +22,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<JWTService>();
+builder.Services.AddScoped<EmailService>();
+
 
 builder.Services.AddDbContext<context>(options =>
 {
