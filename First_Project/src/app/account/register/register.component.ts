@@ -4,7 +4,7 @@ import { AccountService } from '../account.service';
 import { SharedService } from 'src/app/shared/shared.service';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
-import { User } from 'src/app/shared/models/User';
+import { User } from 'src/app/shared/models/account/User';
 
 @Component({
   selector: 'app-register',
